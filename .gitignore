@@ -1,0 +1,38 @@
+# Credentials and private local records
+.env
+.env.*
+!.env.example
+.local/
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*.db
+*.pem
+*.key
+credentials*.json
+*service-account*.json
+
+# Environments, caches and generated output
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.log
+*.zip
+*.tar
+*.tar.gz
+dist/
+build/
+*.egg-info/
+.DS_Store
+
+# Private recordings and media: share a separately reviewed public demo
+*.wav
+*.mp3
+*.m4a
+*.webm
+*.mp4
+recordings/
+backups/

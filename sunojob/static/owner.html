@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="sunojob-token" content="__CSRF_TOKEN__"><meta name="session-id" content="__SESSION_ID__">
+<title>SunoJob · Owner review</title><link rel="icon" href="data:,">
+<link rel="stylesheet" href="/static/app.css"><script src="/static/owner.js" defer></script></head>
+<body><header><span class="brand">Suno<span>Job</span><small>Owner review</small></span><span class="pill">Separate owner approval</span></header>
+<main class="owner-main"><div class="intro"><p class="eyebrow">REVIEW THE EXACT VERSION</p><h1>Before you accept the work.</h1><p>The customer has confirmed these instructions. Review the tasks, restrictions and original wording.</p></div>
+<section class="panel"><div class="section-heading"><h2>Customer-confirmed card</h2><span id="version" class="pill">Loading</span></div>
+<div id="notice" class="notice" role="status">Loading the private review…</div>
+<div id="review" hidden><div id="instructions"></div>
+<details class="source"><summary>Original words and corrections</summary><div id="sources"></div></details>
+<p id="customer-approval" class="owner-subtitle"></p>
+<div id="accept-form" class="review-section">
+<label for="owner-name">Owner / provider display name</label><input id="owner-name" type="text" maxlength="120" autocomplete="name">
+<label class="review-check"><input id="reviewed" type="checkbox"><span>I reviewed every instruction and restriction and accept this exact version.</span></label>
+<button id="accept" class="primary" disabled>Accept this version</button>
+<details class="review-section"><summary>Request a change instead</summary><label for="change-note">What needs to change?</label><textarea id="change-note" rows="3" maxlength="2000"></textarea><button id="request-change" class="secondary">Request customer review</button><p class="muted">This does not edit or accept the customer's instructions. The customer must resolve the request and confirm a new version.</p></details>
+</div>
+<div id="downloads" class="review-section" hidden><p id="owner-approval" class="owner-subtitle"></p><div class="owner-actions"><button id="receipt-html" class="primary">Download shared record</button><button id="receipt-json" class="secondary">Download JSON evidence</button></div></div>
+</div></section><footer>Local prototype · Display names are not identity verification. The review link can be used by anyone who has it. This is not a verified digital signature.</footer></main></body></html>

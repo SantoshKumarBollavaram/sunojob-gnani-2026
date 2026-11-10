@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="sunojob-token" content="__CSRF_TOKEN__">
+  <title>SunoJob · Review your instructions</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/static/app.css"><script src="/static/app.js" defer></script>
+</head>
+<body>
+<header><a class="brand" href="/">Suno<span>Job</span><small>Speak. Review. Confirm.</small></a><span id="connection" class="pill">Connecting</span></header>
+<main>
+  <div class="intro"><p class="eyebrow">YOUR WORDS, BEFORE WORK BEGINS</p><h1>Make the instructions clear.</h1><p>Say what you need, review the details, and confirm the version you mean.</p></div>
+  <div class="workspace">
+    <section class="panel capture">
+      <div class="section-heading"><span class="step">01</span><h2>Speak naturally</h2></div>
+      <label for="language">Conversation language</label>
+      <select id="language"><option value="en-IN">English</option><option value="te-IN">తెలుగు + English</option></select>
+      <button id="record" class="record"><span id="record-icon">●</span><span id="record-label">Record request</span></button>
+      <p id="record-help" class="muted">Up to 25 seconds. Microphone access stays off until you start.</p>
+      <label class="upload">Or upload a recording<input id="upload" type="file" accept="audio/*"></label>
+      <div id="notice" class="notice" role="status" aria-live="polite">Ready for your first request.</div>
+      <details id="text-entry" class="text-fallback"><summary>Type a request or correction</summary><textarea id="text" rows="4" placeholder="Prepare fifty, actually forty lunch boxes. Do not add onion. Ask me before changing the menu."></textarea><button id="submit-text" class="secondary">Create draft from text</button></details>
+      <button id="start-over" class="quiet">Start another request</button>
+      <div class="recent"><label for="recent">Saved requests</label><select id="recent"><option value="">Choose a request</option></select></div>
+    </section>
+    <section class="panel card-panel">
+      <div class="section-heading"><span class="step">02</span><h2>Review the card</h2><span id="version" class="pill">No draft yet</span></div>
+      <div id="empty" class="empty"><div class="empty-mark">≋</div><h3>A clear record starts here.</h3><p>Your tasks, restrictions, conditions and corrections will appear together.</p></div>
+      <div id="card-content" hidden>
+        <div id="state" class="state-banner">Draft</div>
+        <p id="state-reason" class="recovery-note" role="status" hidden></p>
+        <div id="instructions" class="instructions"></div>
+        <div id="questions" class="questions"></div>
+        <details class="source"><summary>Original words and corrections</summary><div id="sources"></div></details>
+        <div class="listen"><div class="section-heading"><span class="step">03</span><h2>Listen and respond</h2></div>
+          <button id="readback" class="primary">Generate spoken readback</button>
+          <audio id="player" controls hidden></audio>
+          <p id="readback-help" class="muted">Listen to the full readback, then record “I confirm” or explain what should change.</p>
+          <details id="readback-caption" hidden><summary>Readback text</summary><p id="spoken-text"></p></details>
+        </div>
+        <section id="owner-review" class="review-section" hidden>
+          <div class="section-heading"><span class="step">04</span><h2>Owner review</h2></div>
+          <p id="owner-summary" class="muted"></p><p id="owner-note" class="questions" role="status"></p>
+          <button id="owner-link" class="primary">Create owner review link</button>
+          <button id="refresh-review" class="secondary">Refresh owner status</button>
+          <label for="owner-url">Private local review link</label><input id="owner-url" type="text" readonly placeholder="Create a link after customer confirmation">
+          <a id="open-owner" class="review-link" target="_blank" rel="noopener noreferrer" hidden>Open owner review</a>
+          <p class="muted">Open on this laptop for the prototype. Links expire in 24 hours. A new link replaces the previous one. Sharing to another device needs deployment.</p>
+        </section>
+        <section id="receipt-panel" class="review-section" hidden>
+          <div class="section-heading"><span class="step">05</span><h2>Shared record</h2></div>
+          <p class="muted">One saved snapshot of the card and both approvals. Changes require fresh approval.</p>
+          <button id="receipt-html" class="primary">Download shared record</button>
+          <button id="receipt-json" class="secondary">Download JSON evidence</button>
+          <details><summary>Email copies to both parties</summary>
+            <label for="customer-email">Customer email</label><input id="customer-email" type="email" autocomplete="off" maxlength="254" required>
+            <label for="owner-email">Owner email</label><input id="owner-email" type="email" autocomplete="off" maxlength="254" required>
+            <div id="email-notice" class="notice" role="status" aria-live="polite" hidden></div>
+            <button id="email-drafts" class="secondary">Download two email drafts</button>
+            <p class="muted">Downloading drafts sends nothing. Open them in a compatible mail client, or use direct sending below.</p>
+            <div class="review-section">
+              <p id="email-config" class="muted">Checking email configuration…</p>
+              <button id="email-preview" class="secondary" disabled>Preview direct email</button>
+              <div id="email-preview-panel" hidden>
+                <h3>Email preview</h3><div id="email-preview-content"></div>
+                <p class="muted">Both copies include the complete shared record and original transcript turns. Check the intended recipients before sending.</p>
+                <label class="review-check"><input id="email-reviewed" type="checkbox"><span>I reviewed both recipient addresses and the record, and want to email these copies now.</span></label>
+                <button id="send-emails" class="primary" disabled>Send to both now</button>
+              </div>
+            </div>
+          </details>
+        </section>
+        <section id="receipt-history-panel" class="review-section" hidden>
+          <h2 class="history-heading">Saved approval snapshots</h2>
+          <p class="muted">Earlier approvals stay available here. A saved snapshot does not approve a pending correction or a later version.</p>
+          <div id="receipt-history" aria-live="polite"></div>
+        </section>
+        <section id="email-history-panel" class="review-section" hidden>
+          <h2 class="history-heading">Email delivery history</h2>
+          <p id="email-history-note" class="muted" role="status">Loading saved previews and submissions…</p>
+          <button id="email-jobs-refresh" class="quiet">Refresh email results</button>
+          <div id="email-jobs" aria-live="polite"></div>
+          <p class="muted">These are saved submission results. Open the recipient’s inbox for the actual email. Matching records remain under Saved approval snapshots.</p>
+        </section>
+      </div>
+    </section>
+  </div>
+  <footer>Local prototype · Identities are not verified. Customer and owner approve separately. Direct email requires a reviewed preview and an explicit send action.</footer>
+</main>
+</body></html>
